@@ -1,0 +1,18 @@
+#Einfaches Makefile
+#Das Flag MakeConfparse erzeugt den Modultest fuer den Parser
+#Folgende Dinge werden benoetigt:
+#Compiler: CC
+#Includes: Include
+#Compiler-Flags: CFlags
+#Flex in C: CLFflex
+#Mysql in C: CLFmysql
+#Wohin mit der EXE: Comppath
+#Fuer Clean:
+#rm: RM
+#Welche Object-Dateien sollen geloescht werden: Del_Obj_Files
+
+constructs.o: confstructs.c
+	$(CC) -c $< -o $@ $(Include) $(CFlags)
+
+clean:
+	rm -f $(Del_Obj_Files)

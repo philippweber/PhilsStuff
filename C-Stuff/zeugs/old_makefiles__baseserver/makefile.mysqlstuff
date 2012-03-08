@@ -1,0 +1,14 @@
+#Einfaches Makefile
+#Folgende Dinge werden benoetigt:
+#Compiler: CC
+#Includes: Include
+#Compiler-Flags: CFlags
+#Flex in C: CLFflex
+#Mysql in C: CLFmysql
+#Wohin mit der EXE: Comppath
+#Fuer Clean:
+#rm: RM
+#Welche Object-Dateien sollen geloescht werden: Del_Obj_Files
+
+clean:
+	$(RM) -f $(Del_Obj_Files)

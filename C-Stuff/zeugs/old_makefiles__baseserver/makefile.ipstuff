@@ -1,0 +1,31 @@
+#Einfaches Makefile
+#Das Flag MakeIpConv erzeugt den IPv6-Konverter
+#Das Flag MakeIpSetTest erzeugt den Modultest fuer IP-Sets
+#Achtung: MakeIpSetTest benoetigt ausserdem confstructs, confparse und confscan
+#Folgende Dinge werden benoetigt:
+#Compiler: CC
+#Includes: Include
+#Compiler-Flags: CFlags
+#Flex in C: CLFflex
+#Mysql in C: CLFmysql
+#Wohin mit der EXE: Comppath
+#Fuer Clean:
+#rm: RM
+#Welche Object-Dateien sollen geloescht werden: Del_Obj_Files
+
+ipsetstruct: CFlags+=-D MakeIpSetTest
+ipsetstruct: ipsetstructs.o ipconv.o #confparse.o confscan.o confstructs.o
+	$(CC) $^ -o $(Comppath)$@ $(Include) $(CFlags) $(CLFflex) $(CLFmysql)
+
+ipsetstructs.o: ipsetstructs.c
+	$(CC) -c $< -o $@ $(Include) $(CFlags) $(CDirFlags)
+
+ipconv: CFlags+=-D MakeIpConv
+ipconv: ipconv.o
+	$(CC) $^ -o $(Comppath)$@ $(Include) $(CFlags)
+
+ipconv.o: ipconv.c
+	$(CC) -c $< -o $@ $(Include) $(CFlags) $(CDirFlags)
+
+clean:
+	$(RM) -f $(Del_Obj_Files)
